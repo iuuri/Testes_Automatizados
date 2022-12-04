@@ -26,4 +26,8 @@ git remote add origin https://github.com/iuuri/Testes_Automatizados.git
 git status 
 git add . 
 git commit -m "novas atividades"
+git push 
 
+------------------------------------------------------------------------------------------------------------------
+abrir o cypress 
+npx cypress open

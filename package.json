@@ -17,10 +17,8 @@
     "url": "https://github.com/iuuri/Testes_Automatizados/issues"
   },
   "homepage": "https://github.com/iuuri/Testes_Automatizados#readme",
-  "dependencies": {
-    "cypress": "^11.2.0"
-  },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
+    "@faker-js/faker": "^7.6.0",
+    "cypress": "^12.1.0"
   }
 }

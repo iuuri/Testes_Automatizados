@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
 
-context('Funcionalidade Criar e Excluir conta', () => {
+context('Funcionalidade login e exclusão de contas', () => {
 
   let emailFaker = faker.internet.email()
   let nomeFaker = faker.name.firstName()
@@ -43,4 +43,15 @@ context('Funcionalidade Criar e Excluir conta', () => {
     cy.get('.pull-right > .btn').click()
   });
 
+  it('CT02 Deve fazer login com sucesso', () => {
+    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+    cy.get('.login-form > form > [type="email"]').type('teste52@teste.com.br')
+    cy.get('[type="password"]').type('teste@teste')
+    cy.get('.login-form > form > .btn').click()
+    cy.get(':nth-child(10) > a').should('contain', 'Logged in as Teste')
+  });
+
 });
+
+
+

@@ -51,6 +51,32 @@ context('Funcionalidade login e exclusão de contas', () => {
     cy.get(':nth-child(10) > a').should('contain', 'Logged in as Teste')
   });
 
+  it('CT03 Usuario de login com e-mail e senha incorreto', () => {
+    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+    cy.get('.login-form > form > [type="email"]').type('emailincorreto@teste.com.br')
+    cy.get('[type="password"]').type('senhaincorreta@teste')
+    cy.get('.login-form > form > .btn').click()
+    cy.get('.login-form > form > p').should('contain', 'Your email or password is incorrect')
+  });
+
+  it('CT04 Realizar logoff', () => {
+    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+    cy.get('.login-form > form > [type="email"]').type('teste52@teste.com.br')
+    cy.get('[type="password"]').type('teste@teste')
+    cy.get('.login-form > form > .btn').click()
+    cy.get(':nth-child(10) > a').should('contain', 'Logged in as Teste')
+    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+    cy.get('.login-form > h2').should('contain', 'Login to your account')
+
+  });
+
+  it('CT05 Registrar usuario com ', () => {
+    
+  });
+
+
+
+
 });
 
 

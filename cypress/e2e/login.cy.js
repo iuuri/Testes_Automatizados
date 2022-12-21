@@ -1,5 +1,6 @@
 // importar as dependencias do cypress\\
 /// <reference types="cypress" />
+const perfil = require('../fixtures/perfil.json')
 
 //criar um bloco de contexto\\
 context("Funcionalidade Login", () => {
@@ -25,6 +26,24 @@ context("Funcionalidade Login", () => {
 
     //metodo de verificação de teste esperado\\
     cy.get('a > .hidden-xs').should('contain', 'Welcome')
+
+  });
+
+  it('Deve fazer login com sucesso - Usando arquivo de dados', () => {
+    cy.get('#username').type(perfil.usuario)
+    cy.get('#password').type(perfil.senha)
+    cy.get('.woocommerce-form > .button').click()
+    cy.get('a > .hidden-xs').should('contain', 'Welcome')
+  });
+
+  it('Deve fazer login com sucesso - Usando fixture', () => {
+    cy.fixture('perfil').then(dados =>{
+    cy.get('#username').type(dados.usuario)
+    cy.get('#password').type(dados.senha, {log:false}) //utilizar {log:false} para esconder a senha ou algum dado\\ 
+    cy.get('.woocommerce-form > .button').click()
+    cy.get('a > .hidden-xs').should('contain', 'Welcome')
+    })
+
 
   });
 

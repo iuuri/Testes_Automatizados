@@ -19,6 +19,6 @@
   "homepage": "https://github.com/iuuri/Testes_Automatizados#readme",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "cypress": "^12.1.0"
+    "cypress": "^12.2.0"
   }
 }

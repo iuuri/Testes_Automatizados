@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
 
-context('Funcionalidade login e exclusão de contas', () => {
+context('Funcionalidade login', () => {
 
   let emailFaker = faker.internet.email()
   let nomeFaker = faker.name.firstName()
@@ -70,8 +70,42 @@ context('Funcionalidade login e exclusão de contas', () => {
 
   });
 
-  it('CT05 Registrar usuario com ', () => {
-    
+  it('CT05 Registrar usuario com email existente ', () => {
+    cy.get('.shop-menu > .nav > :nth-child(1) > a').should('contain', 'Home')
+    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+    cy.get('.signup-form > h2').should('contain', 'New User Signup!')
+    cy.get('[type="text"]').type('teste52')
+    cy.get('.signup-form > form > [type="email"]').type('teste52@teste.com.br')
+    cy.get('.signup-form > form > .btn').click()
+    cy.get('.signup-form > form > p').should('contain', 'Email Address already exist!')
+
+  });
+
+});
+
+context('Funcionalidade formulario de contato', () => {
+
+  let emailFaker = faker.internet.email()
+  let nomeFaker = faker.name.firstName()
+
+  beforeEach(() => {
+    cy.visit("http://automationexercise.com")
+  });
+
+  it('CT06 Preencher form de contato', () => {
+    cy.get('.shop-menu > .nav > :nth-child(1) > a').should('contain', 'Home')
+    cy.get('.shop-menu > .nav > :nth-child(8) > a').click()
+    cy.get('.col-sm-12 > .title').should('contain', 'Contact Us')
+    cy.get(':nth-child(2) > .form-control').type(nomeFaker)
+    cy.get(':nth-child(3) > .form-control').type(emailFaker)
+    cy.get(':nth-child(4) > .form-control').type('teste')
+    cy.get('#message').type('teste teste teste teste teste ')
+    cy.get(':nth-child(6) > .form-control').selectFile('cypress/fixtures/teste.txt')
+    cy.get(':nth-child(7) > .btn').click()
+    cy.get('.status').should('contain', 'Success! Your details have been submitted successfully.')
+    cy.get('#form-section > .btn').click()
+    cy.get('.shop-menu > .nav > :nth-child(1) > a').should('contain', 'Home')
+
   });
 
 
@@ -79,5 +113,15 @@ context('Funcionalidade login e exclusão de contas', () => {
 
 });
 
+context('Pagina de casos de teste', () => {
+  beforeEach(() => {
+    cy.visit("http://automationexercise.com")
+  });
 
+  it('CT07 Verificar pagina casos de teste', () => {
+    cy.get('.shop-menu > .nav > :nth-child(1) > a').should('contain', 'Home')
+    cy.get('.shop-menu > .nav > :nth-child(5) > a').click()
+    cy.get('b').should('contain', ('Test Cases'))
+  });
+});
 
